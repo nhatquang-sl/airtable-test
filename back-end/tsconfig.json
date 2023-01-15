@@ -9,6 +9,7 @@
       "@config": ["config"],
       "@config/*": ["config/*"],
       "@application/*": ["application/*"],
+      "@database/*": ["database/*"],
       "@libs/*": ["../../front-end/src/shared/*"]
     },
     "resolveJsonModule": true,

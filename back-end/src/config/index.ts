@@ -14,6 +14,11 @@ const ENV = {
   PORT: process.env.PORT || 3500,
 
   ALLOWED_ORIGINS: process.env.ALLOWED_ORIGINS?.split(',').map((x) => x.trim()) ?? [],
+
+  DB_NAME: process.env.DB_NAME ?? '',
+  DB_USERNAME: process.env.DB_USERNAME ?? '',
+  DB_PASSWORD: process.env.DB_PASSWORD,
+  DB_HOST: process.env.DB_HOST,
 };
 
 export default ENV;

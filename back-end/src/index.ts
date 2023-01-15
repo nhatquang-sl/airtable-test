@@ -1,5 +1,7 @@
 import express, { Request, Response, NextFunction } from 'express';
 import ENV from '@config';
+import dbContext from '@database/db-context';
+import MainModel from '@database/models/model';
 console.log(ENV);
 const app = express();
 
@@ -26,6 +28,10 @@ router.get('/health-check', (req, res) => {
 });
 app.use('/', router);
 
-app.listen(ENV.PORT, () => console.log(`Server running on port ${ENV.PORT}`));
+dbContext.connect().then(async () => {
+  // await initializeDb();
+  await MainModel.sync({ force: true });
+  app.listen(ENV.PORT, () => console.log(`Server running on port ${ENV.PORT}`));
+});
 
 export default app;
