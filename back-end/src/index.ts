@@ -2,6 +2,9 @@ import express, { Request, Response, NextFunction } from 'express';
 import ENV from '@config';
 import { dbContext, initializeDb } from '@database';
 import SyncModelWorker from 'workers/sync-data';
+
+import airtableRouter from 'controllers/airtable';
+
 console.log(ENV);
 const app = express();
 
@@ -27,6 +30,7 @@ router.get('/health-check', (req, res) => {
   });
 });
 app.use('/', router);
+app.use('/airtable', airtableRouter);
 
 dbContext.connect().then(async () => {
   await initializeDb();
