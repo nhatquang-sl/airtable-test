@@ -1,5 +1,7 @@
 import dbContext from './db-context';
 import MainModel, { ModelModel } from './models/model';
+import Drawing from './models/drawing';
+import DrawingModel from './models/drawing-model';
 
 const initializeDb = async () => {
   try {
@@ -8,4 +10,4 @@ const initializeDb = async () => {
     console.log({ err });
   }
 };
-export { dbContext, initializeDb, MainModel, ModelModel };
+export { dbContext, initializeDb, MainModel, ModelModel, Drawing, DrawingModel };
