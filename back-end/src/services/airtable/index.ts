@@ -16,14 +16,22 @@ export class ModelDto {
   rootParent: boolean = false;
 }
 
-export class ModelModelDto {
+export class AirtableModelModel {
+  id: string = '';
   number: string = '';
   parentNumber: string = '';
 
-  constructor(number: string, parentNumber: string) {
+  constructor(id: string, number: string, parentNumber: string) {
+    this.id = id;
     this.number = number;
     this.parentNumber = parentNumber;
   }
+}
+
+export class AirtableDrawing {
+  id: string = '';
+  name: string = '';
+  children: string[] = [];
 }
 
 export class AirTableService {
@@ -55,24 +63,43 @@ export class AirTableService {
     return result;
   };
 
-  getModelModel = async (offset: string = ''): Promise<AirtableResponse<ModelModelDto>> => {
+  getModelModel = async (offset: string = ''): Promise<AirtableResponse<AirtableModelModel>> => {
     let requestPath = `/v0/${ENV.AIRTABLE_BASE_ID}/tblvynl4I3DUZCooo`;
     if (offset) requestPath += `?offset=${offset}`;
 
     var res = await this.api.get(requestPath);
 
-    const result = new AirtableResponse<ModelModelDto>(res.data.offset);
+    const result = new AirtableResponse<AirtableModelModel>(res.data.offset);
     for (const record of res.data.records) {
       const { number, parent_number } = record.fields;
 
       if (number?.length && parent_number?.length) {
         for (const num of number) {
           for (const parentNum of parent_number) {
-            result.records.push(new ModelModelDto(num, parentNum));
+            result.records.push(new AirtableModelModel(record.id, num, parentNum));
           }
         }
       }
     }
+
+    return result;
+  };
+
+  getDrawings = async (offset: string = ''): Promise<AirtableResponse<AirtableDrawing>> => {
+    let requestPath = `/v0/${ENV.AIRTABLE_BASE_ID}/tbl3W158UCsQuemmW`;
+    if (offset) requestPath += `?offset=${offset}`;
+
+    var res = await this.api.get(requestPath);
+
+    const result = new AirtableResponse<AirtableDrawing>(res.data.offset);
+    result.records = res.data.records.map(
+      (x: any) =>
+        ({
+          id: x.id,
+          name: x.fields.name,
+          children: x.fields.model_model,
+        } as AirtableDrawing)
+    );
 
     return result;
   };
