@@ -12,9 +12,9 @@ class DbContext {
         dialect: 'mssql',
         dialectModulePath: 'msnodesqlv8/lib/sequelize',
         dialectOptions: {
-          user: ENV.DB_USERNAME,
-          password: ENV.DB_PASSWORD,
-          database: ENV.DB_NAME,
+          // user: ENV.DB_USERNAME,
+          // password: ENV.DB_PASSWORD,
+          // database: ENV.DB_NAME,
           options: {
             driver: '',
             connectionString: `Server=.;Database=airtabledb;Trusted_Connection=yes;Driver={ODBC Driver 17 for SQL Server};`,
@@ -37,7 +37,6 @@ class DbContext {
   async connect() {
     try {
       await this.sequelize.authenticate();
-      this.sequelize.sync({ force: true });
       console.log('Connected to database');
     } catch (e: any) {
       console.log('Occured error when connecting to database. Error:', e.message);

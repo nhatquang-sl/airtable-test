@@ -19,6 +19,9 @@ const ENV = {
   DB_USERNAME: process.env.DB_USERNAME ?? '',
   DB_PASSWORD: process.env.DB_PASSWORD,
   DB_HOST: process.env.DB_HOST,
+
+  AIRTABLE_API_KEY: process.env.AIRTABLE_API_KEY,
+  AIRTABLE_BASE_ID: process.env.AIRTABLE_BASE_ID,
 };
 
 export default ENV;
