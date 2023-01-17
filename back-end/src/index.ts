@@ -1,5 +1,7 @@
 import express, { Request, Response, NextFunction } from 'express';
+import cors from 'cors';
 import ENV from '@config';
+import corsOptions from '@config/cors-options';
 import { dbContext, initializeDb } from '@database';
 import SyncModelWorker from 'workers/sync-data';
 
@@ -7,6 +9,10 @@ import airtableRouter from 'controllers/airtable';
 
 console.log(ENV);
 const app = express();
+
+// Cross Origin Resource Sharing
+// app.use(cors());
+app.use(cors(corsOptions));
 
 // built-in middleware for json
 app.use(express.json());
