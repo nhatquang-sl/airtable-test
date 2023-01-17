@@ -41,10 +41,14 @@ function Sidebar() {
       <Divider />
       <Divider />
       <List>
-        {['Models'].map((text) => (
-          <ListItem key={text} disablePadding button component={Link} to={'/'}>
+        {[
+          { label: 'Models', path: '/' },
+          { label: 'Drawings', path: '/drawings' },
+          { label: 'Services', path: '/services' },
+        ].map((route) => (
+          <ListItem key={route.label} disablePadding button component={Link} to={route.path}>
             <ListItemButton>
-              <ListItemText primary={text} />
+              <ListItemText primary={route.label} />
             </ListItemButton>
           </ListItem>
         ))}

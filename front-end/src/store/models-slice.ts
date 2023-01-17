@@ -1,11 +1,7 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import axios, { AxiosError } from 'axios';
-import { API_ENDPOINT } from './constants';
+import { AxiosError } from 'axios';
+import { apiService } from './constants';
 import { ModelDto } from 'shared/models';
-
-export const apiService = axios.create({
-  baseURL: API_ENDPOINT,
-});
 
 type ModelsState = {
   getModelsStatus: 'idle' | 'loading' | 'succeeded' | 'failed';

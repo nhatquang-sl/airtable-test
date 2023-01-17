@@ -5,3 +5,9 @@ export class ModelDto {
   open: boolean = false;
   children: ModelDto[] = [];
 }
+
+export class DrawingDto {
+  id: string = '';
+  name: string = '';
+  models: ModelDto[] = [];
+}
