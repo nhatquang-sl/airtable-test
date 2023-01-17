@@ -6,7 +6,9 @@ import { AirtableSyncServicesCommand } from '@application/handlers/airtable/sync
 export default class SyncModelWorker {
   run = async () => {
     await mediator.send(new AirtableSyncModelsCommand());
-    await mediator.send(new AirtableSyncDrawingsCommand());
-    await mediator.send(new AirtableSyncServicesCommand());
+    await Promise.all([
+      mediator.send(new AirtableSyncDrawingsCommand()),
+      mediator.send(new AirtableSyncServicesCommand()),
+    ]);
   };
 }
