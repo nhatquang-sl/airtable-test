@@ -1,6 +1,6 @@
 import { mediator } from '@application/mediator';
 import { AirtableSyncModelsCommand } from '@application/handlers/airtable/sync-models';
-import { AirtableSyncDrawingsCommand } from '@application/handlers/airtable/sync-drawing';
+import { AirtableSyncDrawingsCommand } from '@application/handlers/airtable/sync-drawings';
 import { AirtableSyncServicesCommand } from '@application/handlers/airtable/sync-services';
 
 export default class SyncModelWorker {
