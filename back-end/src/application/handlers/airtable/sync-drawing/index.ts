@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import { Op } from 'sequelize';
-import { Drawing, DrawingModel } from '@database';
+import { Drawing, DrawingModel, MainModel } from '@database';
 import { airTableService, AirtableDrawing, AirtableModelModel } from '@services/airtable';
 import { RegisterHandler, ICommandHandler, ICommand } from '@application/mediator';
 

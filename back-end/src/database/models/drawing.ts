@@ -11,14 +11,14 @@ import dbContext from '../db-context';
 
 // https://sequelize.org/docs/v6/other-topics/typescript/
 class Drawing extends Model<
-  InferAttributes<Drawing, { omit: 'children' }>,
-  InferCreationAttributes<Drawing, { omit: 'children' }>
+  InferAttributes<Drawing, { omit: 'models' }>,
+  InferCreationAttributes<Drawing, { omit: 'models' }>
 > {
   declare id: string;
   declare name: string;
-  declare children?: NonAttribute<MainModel[]>;
+  declare models?: NonAttribute<MainModel[]>;
   declare static associations: {
-    children: Association<Drawing, MainModel>;
+    models: Association<Drawing, MainModel>;
   };
 }
 
