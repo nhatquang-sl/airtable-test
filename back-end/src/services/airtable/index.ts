@@ -34,6 +34,14 @@ export class AirtableDrawing {
   children: string[] = [];
 }
 
+export class AirtableService {
+  id: string = '';
+  name: string = '';
+  calendarInterval: number = 0;
+  calendarIntervalUnit: string = '';
+  runningHoursInterval: number = 0;
+}
+
 export class AirTableService {
   api: AxiosInstance;
 
@@ -99,6 +107,27 @@ export class AirTableService {
           name: x.fields.name,
           children: x.fields.model_model,
         } as AirtableDrawing)
+    );
+
+    return result;
+  };
+
+  getServices = async (offset: string = ''): Promise<AirtableResponse<AirtableService>> => {
+    let requestPath = `/v0/${ENV.AIRTABLE_BASE_ID}/tbl9ELh91Ys2WPnwB`;
+    if (offset) requestPath += `?offset=${offset}`;
+
+    var res = await this.api.get(requestPath);
+
+    const result = new AirtableResponse<AirtableService>(res.data.offset);
+    result.records = res.data.records.map(
+      (x: any) =>
+        ({
+          id: x.id,
+          name: x.fields.name,
+          calendarInterval: x.fields.calendar_interval,
+          calendarIntervalUnit: x.fields.calendar_interval_unit,
+          runningHoursInterval: x.fields.running_hours_interval,
+        } as AirtableService)
     );
 
     return result;
