@@ -11,3 +11,10 @@ export class DrawingDto {
   name: string = '';
   models: ModelDto[] = [];
 }
+
+export class ServiceDto {
+  id: string = '';
+  name: string = '';
+  startDate: number = 0;
+  endDate: number = 0;
+}
