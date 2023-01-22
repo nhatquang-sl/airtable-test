@@ -20,11 +20,13 @@ export class AirtableModelModel {
   id: string = '';
   number: string = '';
   parentNumber: string = '';
+  drawingNo: string = '';
 
-  constructor(id: string, number: string, parentNumber: string) {
+  constructor(id: string, number: string, parentNumber: string, drawingNo: string) {
     this.id = id;
     this.number = number;
     this.parentNumber = parentNumber;
+    this.drawingNo = drawingNo;
   }
 }
 
@@ -79,13 +81,13 @@ export class AirTableService {
 
     const result = new AirtableResponse<AirtableModelModel>(res.data.offset);
     for (const record of res.data.records) {
-      const { number, parent_number } = record.fields;
+      const { number, parent_number, dwg_no } = record.fields;
 
       if (number?.length && parent_number?.length) {
         for (const num of number) {
-          for (const parentNum of parent_number) {
-            result.records.push(new AirtableModelModel(record.id, num, parentNum));
-          }
+          for (const parentNum of parent_number)
+            for (const drawingNo of dwg_no)
+              result.records.push(new AirtableModelModel(record.id, num, parentNum, drawingNo));
         }
       }
     }

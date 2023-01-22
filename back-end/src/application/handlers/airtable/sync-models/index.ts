@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import { Op } from 'sequelize';
-import { MainModel, ModelModel } from '@database';
+import { MainModel } from '@database';
 import { airTableService } from '@services/airtable';
 import { RegisterHandler, ICommandHandler, ICommand } from '@application/mediator';
 
@@ -19,26 +19,6 @@ export class AirtableSyncModelsCommandHandler
     do {
       const result = await airTableService.getModels(offset);
       await MainModel.bulkCreate(result.records.map((x) => x));
-      offset = result.offset;
-    } while (offset);
-
-    // sync model-model
-    offset = '';
-    let totalModelmodels: { childrenId: string; parentId: string }[] = [];
-    do {
-      const result = await airTableService.getModelModel(offset);
-
-      let modelmodels = result.records.map((record) => ({
-        childrenId: record.number,
-        parentId: record.parentNumber,
-      }));
-
-      // remove duplicated model-model
-      modelmodels = _.uniqWith(modelmodels, _.isEqual);
-      modelmodels = _.differenceWith(modelmodels, totalModelmodels, _.isEqual);
-      await ModelModel.bulkCreate(modelmodels);
-
-      totalModelmodels = totalModelmodels.concat(modelmodels);
       offset = result.offset;
     } while (offset);
   }
