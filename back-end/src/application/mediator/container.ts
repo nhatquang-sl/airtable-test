@@ -1,6 +1,7 @@
 import { IContainer } from './interfaces';
 
 export const container: IContainer = {
+  cacheCommands: [],
   handlers: {},
   validators: {},
 };
@@ -28,4 +29,9 @@ export function Authorize(roles: string[] = []) {
     if (handlerName) container.handlers[handlerName] = constructor;
     constructor.prototype.authorizeRoles = roles;
   };
+}
+
+export function RegisterCacheCommand<T>(command: { new (): T }): void {
+  const commandName = command.name.toString();
+  if (!container.cacheCommands.includes(commandName)) container.cacheCommands.push(commandName);
 }

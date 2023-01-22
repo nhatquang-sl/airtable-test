@@ -1,8 +1,11 @@
 import _ from 'lodash';
-import { RegisterHandler, ICommandHandler, ICommand } from '@application/mediator';
+import {
+  RegisterHandler,
+  ICommandHandler,
+  ICommand,
+  RegisterCacheCommand,
+} from '@application/mediator';
 import { Drawing, MainModel } from '@database';
-
-export class AirtableGetDrawingsCommand implements ICommand {}
 
 export class MainModelDto {
   id: string = '';
@@ -20,6 +23,9 @@ export class DrawingDto {
 export class AirtableGetModelsResult {
   records: MainModelDto[] = [];
 }
+
+@RegisterCacheCommand
+export class AirtableGetDrawingsCommand implements ICommand {}
 
 @RegisterHandler
 export class AirtableGetDrawingsCommandHandler

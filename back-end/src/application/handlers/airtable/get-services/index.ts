@@ -1,7 +1,10 @@
-import { RegisterHandler, ICommandHandler, ICommand } from '@application/mediator';
+import {
+  RegisterHandler,
+  ICommandHandler,
+  ICommand,
+  RegisterCacheCommand,
+} from '@application/mediator';
 import { Service } from '@database';
-
-export class AirtableGetServicesCommand implements ICommand {}
 
 export class ServiceDto {
   id: string = '';
@@ -9,6 +12,9 @@ export class ServiceDto {
   startDate: number = 0;
   endDate: number = 0;
 }
+
+@RegisterCacheCommand
+export class AirtableGetServicesCommand implements ICommand {}
 
 @RegisterHandler
 export class AirtableGetServicesCommandHandler

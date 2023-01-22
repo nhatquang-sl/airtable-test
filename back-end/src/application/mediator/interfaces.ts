@@ -17,6 +17,7 @@ export interface ICommandValidator<T extends ICommand> {
 }
 
 export interface IContainer {
+  readonly cacheCommands: string[];
   readonly handlers: { [id: string]: Function };
   readonly validators: { [id: string]: Function };
 }

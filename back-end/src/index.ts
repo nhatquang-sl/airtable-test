@@ -2,12 +2,17 @@ import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import ENV from '@config';
 import corsOptions from '@config/cors-options';
+import { mediator } from '@application/mediator';
+import { CachingBehavior } from '@application/common/behaviors';
 import { dbContext, initializeDb } from '@database';
 import SyncModelWorker from 'workers/sync-data';
 
 import airtableRouter from 'controllers/airtable';
 
 console.log(ENV);
+// use a global instance for all requests from HTTP
+mediator.addPipelineBehavior(new CachingBehavior());
+
 const app = express();
 
 // Cross Origin Resource Sharing

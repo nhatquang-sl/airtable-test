@@ -1,4 +1,4 @@
-import { mediator } from '@application/mediator';
+import { Mediator } from '@application/mediator';
 import { AirtableSyncModelsCommand } from '@application/handlers/airtable/sync-models';
 import { AirtableSyncDrawingsCommand } from '@application/handlers/airtable/sync-drawings';
 import { AirtableSyncServicesCommand } from '@application/handlers/airtable/sync-services';
@@ -6,6 +6,8 @@ import { AirtableSyncModelModelCommand } from '@application/handlers/airtable/sy
 
 export default class SyncModelWorker {
   run = async () => {
+    // an isolated instance
+    const mediator = new Mediator();
     await Promise.all([
       mediator.send(new AirtableSyncModelsCommand()),
       mediator.send(new AirtableSyncDrawingsCommand()),

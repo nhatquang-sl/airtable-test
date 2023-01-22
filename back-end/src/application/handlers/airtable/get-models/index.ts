@@ -1,9 +1,12 @@
-import { RegisterHandler, ICommandHandler, ICommand } from '@application/mediator';
+import {
+  RegisterHandler,
+  ICommandHandler,
+  ICommand,
+  RegisterCacheCommand,
+} from '@application/mediator';
 import { MainModel } from '@database';
 import _ from 'lodash';
 import { Op } from 'sequelize';
-
-export class AirtableGetModelsCommand implements ICommand {}
 
 export class MainModelDto {
   id: string = '';
@@ -15,6 +18,9 @@ export class MainModelDto {
 export class AirtableGetModelsResult {
   records: MainModelDto[] = [];
 }
+
+@RegisterCacheCommand
+export class AirtableGetModelsCommand implements ICommand {}
 
 @RegisterHandler
 export class AirtableGetModelsCommandHandler
