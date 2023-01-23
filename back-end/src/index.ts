@@ -5,7 +5,7 @@ import corsOptions from '@config/cors-options';
 import { mediator } from '@application/mediator';
 import { CachingBehavior } from '@application/common/behaviors';
 import { dbContext, initializeDb } from '@database';
-import SyncModelWorker from 'workers/sync-data';
+import SyncDataWorker from 'workers/sync-data';
 
 import airtableRouter from 'controllers/airtable';
 
@@ -46,7 +46,7 @@ app.use('/airtable', airtableRouter);
 dbContext.connect().then(async () => {
   await initializeDb();
   app.listen(ENV.PORT, () => console.log(`Server running on port ${ENV.PORT}`));
-  await new SyncModelWorker().run();
+  await new SyncDataWorker().run();
 });
 
 export default app;

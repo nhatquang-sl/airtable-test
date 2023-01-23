@@ -4,7 +4,7 @@ import { AirtableSyncDrawingsCommand } from '@application/handlers/airtable/sync
 import { AirtableSyncServicesCommand } from '@application/handlers/airtable/sync-services';
 import { AirtableSyncModelModelCommand } from '@application/handlers/airtable/sync-model-model';
 
-export default class SyncModelWorker {
+export default class SyncDataWorker {
   run = async () => {
     // an isolated instance
     const mediator = new Mediator();
