@@ -1,5 +1,5 @@
 import { DataTypes } from 'sequelize';
-import dbContext from 'database/db-context';
+import { dbContext } from '@database';
 import Drawing from './drawing';
 import MainModel from './model';
 

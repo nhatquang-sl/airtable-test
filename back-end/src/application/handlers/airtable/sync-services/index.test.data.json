@@ -1,0 +1,45 @@
+{
+  "records": [
+    {
+      "id": "rec0E63Q229nElDf9",
+      "createdTime": "2020-06-14T17:54:17.000Z",
+      "fields": {
+        "recurring": true,
+        "model": ["reclWMf0WK40CARDb"],
+        "name": "10 year service",
+        "id": 9,
+        "instructions": "1. Change the mechanical face seal in the pump seal. (Contact Kongsberg for more info)",
+        "calendar_interval_unit": "year",
+        "condition": "Used more than 300 hours per year",
+        "calendar_interval": 10
+      }
+    },
+    {
+      "id": "rec1g8GyiAk97Gp2w",
+      "createdTime": "2020-06-14T17:54:40.000Z",
+      "fields": {
+        "recurring": true,
+        "model": ["reclWMf0WK40CARDb"],
+        "running_hours_interval": 25000,
+        "name": "25000 hr service",
+        "id": 10,
+        "instructions": "1. Do a recondition type 2 of the hydraulic cylinders including change of the cylinder bushings. (Contact Kongsberg for more info)\n2. Do an overhaul of the pump unit including inspection and recondition if needed of the impeller blades. (Contact Kongsberg for more info)\n3. Do an overhaul of the pump unit including change of the thrust roller bearing. (Contact Kongsberg for more info)",
+        "condition": "Used more than 300 hours per year"
+      }
+    },
+    {
+      "id": "rec21SyFsJYXafVSf",
+      "createdTime": "2020-06-14T17:49:42.000Z",
+      "fields": {
+        "recurring": true,
+        "model": ["reclWMf0WK40CARDb"],
+        "name": "Quarterly inspection",
+        "id": 4,
+        "instructions": "1. Visually examine the sacrificial anodes\n2. Take an oil sample and send for analysis\n3. Visually examine the control system",
+        "calendar_interval_unit": "month",
+        "condition": "Used more than 300 hours per year",
+        "calendar_interval": 3
+      }
+    }
+  ]
+}

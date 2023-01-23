@@ -1,5 +1,6 @@
-import axios, { AxiosInstance } from 'axios';
+import { AxiosInstance } from 'axios';
 import ENV from '@config';
+import api from './api';
 
 export class AirtableResponse<T> {
   constructor(offset: string) {
@@ -45,14 +46,7 @@ export class AirtableService {
 }
 
 export class AirTableService {
-  api: AxiosInstance;
-
-  constructor() {
-    this.api = axios.create({
-      baseURL: 'https://api.airtable.com',
-      headers: { Authorization: `Bearer ${ENV.AIRTABLE_API_KEY}` },
-    });
-  }
+  api: AxiosInstance = api;
 
   getModels = async (offset: string = ''): Promise<AirtableResponse<ModelDto>> => {
     let requestPath = `/v0/${ENV.AIRTABLE_BASE_ID}/tblkEsD6MG8JVEx6K`;

@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import { Op } from 'sequelize';
 import { Drawing } from '@database';
-import { airTableService, AirtableDrawing } from '@services/airtable';
+import { airTableService } from '@services/airtable';
 import { RegisterHandler, ICommandHandler, ICommand } from '@application/mediator';
 
 export class AirtableSyncDrawingsCommand implements ICommand {}
